@@ -5,20 +5,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 
-import subprocess
-
-def get_chrome_version():
-    try:
-        output = subprocess.check_output(["google-chrome", "--version"]).decode().strip()
-        print("Chromium Version:", output)
-    except Exception as e:
-        print("Could not detect Chrome version:", e)
-
 
 
 def scrape_stock_data(symbol):
-    get_chrome_version()
-    return 
 
     options = Options()
     options.add_argument("--headless")
@@ -27,7 +16,7 @@ def scrape_stock_data(symbol):
     options.add_argument("--disable-dev-shm-usage")
     options.binary_location = "/usr/bin/google-chrome"
     
-    driver = webdriver.Chrome(executable_path="./chromedriver", options=options)
+    driver = webdriver.Chrome(executable_path="./bin/chromedriver", options=options)
     url = f"https://ticker.finology.in/company/{symbol.upper()}"
     driver.get(url)
 
